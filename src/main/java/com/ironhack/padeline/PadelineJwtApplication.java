@@ -27,19 +27,21 @@ public class PadelineJwtApplication {
     @Bean
     CommandLineRunner run(UserService userService) {
         return args -> {
-            userService.saveRole(new Role(null, "ROLE_USER"));
+            userService.saveRole(new Role(null, "ROLE_PLAYER"));
+            userService.saveRole(new Role(null, "ROLE_MANAGER"));
             userService.saveRole(new Role(null, "ROLE_ADMIN"));
 
-            userService.saveUser(new User(null, "John Doe", "john", "1234", new ArrayList<>()));
-            userService.saveUser(new User(null, "James Smith", "james", "1234", new ArrayList<>()));
-            userService.saveUser(new User(null, "Jane Carry", "jane", "1234", new ArrayList<>()));
-            userService.saveUser(new User(null, "Chris Anderson", "chris", "1234", new ArrayList<>()));
+            userService.saveUser(new User(null, "Player1", "player1", "1234", new ArrayList<>()));
+            userService.saveUser(new User(null, "Player2", "player2", "1234", new ArrayList<>()));
+            userService.saveUser(new User(null, "Manager1", "manager1", "1234", new ArrayList<>()));
+            userService.saveUser(new User(null, "Manager2", "manager2", "1234", new ArrayList<>()));
+            userService.saveUser(new User(null, "Admin", "admin", "1234", new ArrayList<>()));
 
-            userService.addRoleToUser("john", "ROLE_USER");
-            userService.addRoleToUser("james", "ROLE_ADMIN");
-            userService.addRoleToUser("jane", "ROLE_USER");
-            userService.addRoleToUser("chris", "ROLE_ADMIN");
-            userService.addRoleToUser("chris", "ROLE_USER");
+            userService.addRoleToUser("player1", "ROLE_PLAYER");
+            userService.addRoleToUser("player2", "ROLE_PLAYER");
+            userService.addRoleToUser("manager1", "ROLE_MANAGER");
+            userService.addRoleToUser("manager2", "ROLE_MANAGER");
+            userService.addRoleToUser("admin", "ROLE_ADMIN");
         };
     }
 
