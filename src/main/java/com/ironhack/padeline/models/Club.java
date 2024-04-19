@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "court")
 @Data
@@ -18,9 +21,11 @@ public class Club {
     private String name;
     @OneToOne
     @JoinColumn(name = "club_address")
-    private Address clubAddress;
-    private Manager manager;
+    private List<Address> clubAddress = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "club_manager")
+    private List<Manager> clubManager = new ArrayList<>();
     @OneToMany
     @JoinColumn(name = "club_court")
-    private Court clubCourt;
+    private List<Court> clubCourt = new ArrayList<>();
 }

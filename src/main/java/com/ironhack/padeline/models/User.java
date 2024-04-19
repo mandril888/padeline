@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +14,7 @@ import static jakarta.persistence.FetchType.EAGER;
 /**
  * Entity class for representing a User in the database
  */
+@SuperBuilder
 @Entity
 @Data
 @NoArgsConstructor
