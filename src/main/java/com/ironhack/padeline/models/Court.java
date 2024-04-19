@@ -3,15 +3,13 @@ package com.ironhack.padeline.models;
 import com.ironhack.padeline.enums.Place;
 import com.ironhack.padeline.enums.Type;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "court")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Court {
     @Setter(AccessLevel.NONE)
     @Id
@@ -21,5 +19,4 @@ public class Court {
     private Place place;
     @Enumerated(EnumType.STRING)
     private Type type;
-    private boolean isBooked;
 }

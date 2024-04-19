@@ -1,9 +1,7 @@
 package com.ironhack.padeline.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
@@ -17,9 +15,11 @@ import static jakarta.persistence.FetchType.EAGER;
 @SuperBuilder
 @Entity
 @Data
+@Table(name = "user")
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
+    @Setter(AccessLevel.NONE)
     /**
      * The unique identifier for the user
      */
@@ -49,5 +49,4 @@ public class User {
      */
     @ManyToMany(fetch = EAGER)
     private Collection<Role> roles = new ArrayList<>();
-
 }

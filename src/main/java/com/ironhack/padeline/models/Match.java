@@ -1,19 +1,17 @@
 package com.ironhack.padeline.models;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "court")
+@Table(name = "match")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Match {
     @Setter(AccessLevel.NONE)
     @Id
@@ -22,7 +20,7 @@ public class Match {
     private Date matchDate;
     @OneToOne
     @JoinColumn(name = "match_court")
-    private List<Court> matchCourt = new ArrayList<>();
+    private Court matchCourt;
     @OneToMany
     @JoinColumn(name = "match_player")
     private List<Player> matchPlayer = new ArrayList<>();

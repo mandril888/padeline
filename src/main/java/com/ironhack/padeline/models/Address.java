@@ -1,15 +1,13 @@
 package com.ironhack.padeline.models;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "address")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Address {
     @Setter(AccessLevel.NONE)
     @Id

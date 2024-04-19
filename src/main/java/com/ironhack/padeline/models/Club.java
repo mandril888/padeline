@@ -1,18 +1,16 @@
 package com.ironhack.padeline.models;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "court")
+@Table(name = "club")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Club {
     @Setter(AccessLevel.NONE)
     @Id
@@ -21,10 +19,10 @@ public class Club {
     private String name;
     @OneToOne
     @JoinColumn(name = "club_address")
-    private List<Address> clubAddress = new ArrayList<>();
+    private Address clubAddress;
     @OneToOne
     @JoinColumn(name = "club_manager")
-    private List<Manager> clubManager = new ArrayList<>();
+    private Manager clubManager;
     @OneToMany
     @JoinColumn(name = "club_court")
     private List<Court> clubCourt = new ArrayList<>();
