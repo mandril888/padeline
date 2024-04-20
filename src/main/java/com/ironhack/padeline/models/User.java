@@ -15,7 +15,11 @@ import static jakarta.persistence.FetchType.EAGER;
 @SuperBuilder
 @Entity
 @Data
-@Table(name = "user")
+@Table(
+        name = "user",
+        uniqueConstraints=
+            @UniqueConstraint(columnNames={"username"})
+)
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
