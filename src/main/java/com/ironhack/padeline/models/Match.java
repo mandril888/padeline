@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "match")
+@Table(name = "match_game")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,9 +19,9 @@ public class Match {
     private int id;
     private Date matchDate;
     @OneToOne
-    @JoinColumn(name = "match_court")
+    @JoinColumn(name = "match_game_court")
     private Court matchCourt;
     @OneToMany
-    @JoinColumn(name = "match_player")
+    @JoinColumn(name = "match_game_player")
     private List<Player> matchPlayer = new ArrayList<>();
 }
