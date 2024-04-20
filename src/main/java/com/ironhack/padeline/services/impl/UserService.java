@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -138,5 +139,14 @@ public class UserService implements UserServiceInterface, UserDetailsService {
     public List<User> getUsers() {
         log.info("Fetching all users");
         return userRepository.findAll();
+    }
+
+    @Override
+    public void updateUser(Long id, User user) {
+        Optional<User> userOld = userRepository.findById(id);
+        if (userOld.isPresent()) {
+            user.setId(id);
+            userRepository.save(user);
+        }
     }
 }

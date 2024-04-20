@@ -48,5 +48,7 @@ public interface UserServiceInterface {
      * @return a List of all User entities.
      */
     List<User> getUsers();
+
+    void updateUser(Long id, User user);
 }
 

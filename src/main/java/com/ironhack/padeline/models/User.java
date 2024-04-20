@@ -1,6 +1,7 @@
 package com.ironhack.padeline.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -23,7 +24,6 @@ import static jakarta.persistence.FetchType.EAGER;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    @Setter(AccessLevel.NONE)
     /**
      * The unique identifier for the user
      */
@@ -36,16 +36,20 @@ public class User {
     /**
      * The name of the user
      */
+    @NotNull
     private String name;
 
     /**
      * The username used to log in
      */
+    @Setter(AccessLevel.NONE)
+    @NotNull
     private String username;
 
     /**
      * The password used to log in
      */
+    @NotNull
     private String password;
 
     /**
