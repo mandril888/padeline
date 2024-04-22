@@ -1,6 +1,7 @@
 package com.ironhack.padeline.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -16,10 +17,13 @@ public class Match {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private int id;
+    @NotNull
     private Date matchDate;
     @OneToOne
     @JoinColumn(name = "match_game_court")
+    @NotNull
     private Court matchCourt;
     @OneToMany
     @JoinColumn(name = "match_game_player")
