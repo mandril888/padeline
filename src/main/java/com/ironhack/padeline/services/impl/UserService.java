@@ -149,4 +149,12 @@ public class UserService implements UserServiceInterface, UserDetailsService {
             userRepository.save(user);
         }
     }
+
+    @Override
+    public void deleteUser(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            userRepository.delete(user.get());
+        }
+    }
 }
