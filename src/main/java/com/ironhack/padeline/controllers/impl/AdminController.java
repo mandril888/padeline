@@ -2,6 +2,7 @@ package com.ironhack.padeline.controllers.impl;
 
 import com.ironhack.padeline.models.Manager;
 import com.ironhack.padeline.services.interfaces.AdminServiceInterface;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ public class AdminController {
 
     @PostMapping("/managers")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveManager(@RequestBody Manager manager) {
+    public void saveManager(@RequestBody @Valid Manager manager) {
         adminService.saveManager(manager);
     }
 }

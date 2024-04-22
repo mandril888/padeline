@@ -1,21 +1,17 @@
 package com.ironhack.padeline.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import lombok.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 import java.util.Collection;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-//@Table(name = "player")
 @Data
 @NoArgsConstructor
 public class Player extends User {

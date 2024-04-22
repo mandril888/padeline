@@ -2,6 +2,7 @@ package com.ironhack.padeline.controllers.impl;
 
 import com.ironhack.padeline.models.User;
 import com.ironhack.padeline.services.interfaces.UserServiceInterface;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -39,13 +40,13 @@ public class UserController {
      */
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveUser(@RequestBody User user) {
+    public void saveUser(@RequestBody @Valid User user) {
         userService.saveUser(user);
     }
 
     @PatchMapping("/users/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void updateUser(@PathVariable(name="id") Long id, @RequestBody User user) {
+    public void updateUser(@PathVariable(name="id") Long id, @RequestBody @Valid User user) {
         userService.updateUser(id, user);
     }
 }

@@ -1,6 +1,7 @@
 package com.ironhack.padeline.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -12,9 +13,14 @@ public class Address {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private int id;
+    @NotNull
     private String country;
+    @NotNull
     private String city;
+    @NotNull
     private String street;
+    @NotNull
     private String number;
 }

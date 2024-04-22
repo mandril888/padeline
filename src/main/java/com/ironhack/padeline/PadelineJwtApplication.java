@@ -33,8 +33,8 @@ public class PadelineJwtApplication {
 //
 //            userService.saveUser(new Player(null, "Player1", "player1", "1234", new ArrayList<>(), new Date(2014, 2, 11), 5));
 //            userService.saveUser(new Player(null, "Player2", "player2", "1234", new ArrayList<>(), new Date(2010, 7, 21), 8));
-//            userService.saveUser(new Manager(null, "Manager1", "manager1", "1234", new ArrayList<>(), new Date(2010, 7, 21), 8, new ArrayList<>()));
-//            userService.saveUser(new Manager(null, "Manager2", "manager2", "1234", new ArrayList<>(), new Date(2010, 7, 21), 8, new ArrayList<>()));
+//            userService.saveUser(new Manager(null, "Manager1", "manager1", "1234", new ArrayList<>(), new Date(2010, 7, 21), 7, new ArrayList<>()));
+//            userService.saveUser(new Manager(null, "Manager2", "manager2", "1234", new ArrayList<>(), new Date(2010, 7, 21), 9, new ArrayList<>()));
 //            userService.saveUser(new Admin(null, "Admin", "admin", "1234", new ArrayList<>()));
 //
 //            userService.addRoleToUser("player1", "ROLE_PLAYER");
