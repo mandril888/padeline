@@ -8,12 +8,14 @@ import com.ironhack.padeline.services.interfaces.UserServiceInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -143,18 +145,24 @@ public class UserService implements UserServiceInterface, UserDetailsService {
 
     @Override
     public void updateUser(Long id, User user) {
+        log.info("Updateing user with id " + id);
         Optional<User> userOld = userRepository.findById(id);
         if (userOld.isPresent()) {
             user.setId(id);
             userRepository.save(user);
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "User with id " + id + " doesn't exist");
         }
     }
 
     @Override
     public void deleteUser(Long id) {
+        log.info("Deleting user with id " + id);
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             userRepository.delete(user.get());
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "User with id " + id + " doesn't exist");
         }
     }
 }
