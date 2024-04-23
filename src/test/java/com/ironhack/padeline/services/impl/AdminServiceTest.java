@@ -18,12 +18,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class AdminServiceTest {
 
     @Autowired
-    ManagerRepository managerRepository;
+    private ManagerRepository managerRepository;
 
     @Autowired
-    AdminService adminService;
+    private AdminService adminService;
 
-    Manager manager;
+    private Manager manager;
 
     @BeforeEach
     public void setUp() {

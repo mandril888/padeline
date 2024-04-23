@@ -16,13 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserServiceTest {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
-    User user;
-    User newUser;
+    private User user;
+    private User newUser;
 
     @BeforeEach
     public void setUp() {
