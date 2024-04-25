@@ -16,7 +16,7 @@ public class AdminController {
 
     @PostMapping("/managers")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveManager(@RequestBody @Valid Manager manager) {
-        adminService.saveManager(manager);
+    public Manager saveManager(@RequestBody @Valid Manager manager) {
+        return adminService.saveManager(manager);
     }
 }
