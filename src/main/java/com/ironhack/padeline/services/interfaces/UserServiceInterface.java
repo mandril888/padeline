@@ -49,7 +49,7 @@ public interface UserServiceInterface {
      */
     List<User> getUsers();
 
-    void updateUser(Long id, User user);
+    User updateUser(Long id, User user);
 
     void deleteUser(Long id);
 }

@@ -44,14 +44,24 @@ public class UserController {
         userService.saveUser(user);
     }
 
+    /**
+     * Update an existing user
+     *
+     * @param user the user to update
+     */
     @PatchMapping("/users/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void updateUser(@PathVariable(name="id") Long id, @RequestBody @Valid User user) {
-        userService.updateUser(id, user);
+    public User updateUser(@PathVariable(name="id") Long id, @RequestBody @Valid User user) {
+        return userService.updateUser(id, user);
     }
 
+    /**
+     * Delete a user
+     *
+     * @param id the id of the user to delete
+     */
     @DeleteMapping("/users/{id}")
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @ResponseStatus(value = HttpStatus.OK)
     public void deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
     }

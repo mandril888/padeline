@@ -144,12 +144,12 @@ public class UserService implements UserServiceInterface, UserDetailsService {
     }
 
     @Override
-    public void updateUser(Long id, User user) {
+    public User updateUser(Long id, User user) {
         log.info("Updateing user with id " + id);
         Optional<User> userOld = userRepository.findById(id);
         if (userOld.isPresent()) {
             user.setId(id);
-            userRepository.save(user);
+            return userRepository.save(user);
         } else {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "User with id " + id + " doesn't exist");
         }
