@@ -1,8 +1,6 @@
 package com.ironhack.padeline.controllers.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ironhack.padeline.models.Player;
 import com.ironhack.padeline.models.User;
 import com.ironhack.padeline.repositories.UserRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -17,11 +15,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -62,6 +59,10 @@ class UserControllerTest {
     }
 
     @Test
-    void deleteUser() {
+    void deleteUser() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(delete("/api/users/" + user.getId()))
+                .andExpect(status().isOk()).andReturn();
+
+        assertNull(userRepository.findByUsername(user.getUsername()));
     }
 }
