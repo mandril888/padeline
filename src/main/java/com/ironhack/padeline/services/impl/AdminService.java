@@ -1,7 +1,6 @@
 package com.ironhack.padeline.services.impl;
 
 import com.ironhack.padeline.models.Manager;
-import com.ironhack.padeline.repositories.AdminRepository;
 import com.ironhack.padeline.repositories.ManagerRepository;
 import com.ironhack.padeline.services.interfaces.AdminServiceInterface;
 import lombok.RequiredArgsConstructor;
