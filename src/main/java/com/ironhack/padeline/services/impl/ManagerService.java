@@ -24,8 +24,8 @@ public class ManagerService implements ManagerServiceInterface {
 
     @Override
     public Club saveClub(Club club, Manager manager) {
-        Optional<Club> optionalProduct = clubRepository.findById(club.getId());
-        if (optionalProduct.isPresent()) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Club with id " + club.getId() + " already exist");
+        Optional<Club> optionalClub = clubRepository.findById(club.getId());
+        if (optionalClub.isPresent()) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Club with id " + club.getId() + " already exist");
 
         log.info("Asociating new club {} to the manager", club.getName());
         List clubsList = manager.getManagerClub();

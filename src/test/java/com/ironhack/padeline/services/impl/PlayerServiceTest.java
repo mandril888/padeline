@@ -1,6 +1,7 @@
 package com.ironhack.padeline.services.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ironhack.padeline.models.Match;
 import com.ironhack.padeline.models.Player;
 import com.ironhack.padeline.repositories.PlayerRepository;
 import com.ironhack.padeline.repositories.UserRepository;
@@ -29,10 +30,12 @@ class PlayerServiceTest {
     private PlayerService playerService;
 
     private Player player;
+    private Match match;
 
     @BeforeEach
     void setUp() {
         player = new Player(1L, "Player1", "player1", "1234", new ArrayList<>(), new Date(2014, 2, 11), 5);
+        // match = new Match(1, new Date(2024, 7, 11), , new ArrayList<>());
     }
 
     @AfterEach
@@ -45,5 +48,9 @@ class PlayerServiceTest {
         Player newPlayer = playerService.savePlayer(player);
         Optional<Player> playerFound = playerRepository.findById(newPlayer.getId());
         assertEquals(newPlayer.getUsername(), playerFound.get().getUsername());
+    }
+
+    @Test
+    void saveMatch() {
     }
 }

@@ -26,8 +26,8 @@ public class AdminService implements AdminServiceInterface {
 
     @Override
     public Manager saveManager(Manager manager) {
-        Optional<Manager> optionalProduct = managerRepository.findById(manager.getId());
-        if (optionalProduct.isPresent()) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Manager with id " + manager.getId() + " already exist");
+        Optional<Manager> optionalManager = managerRepository.findById(manager.getId());
+        if (optionalManager.isPresent()) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Manager with id " + manager.getId() + " already exist");
 
         log.info("Saving new manager {} to the database", manager.getName());
         // Encode the manager's password for security before saving

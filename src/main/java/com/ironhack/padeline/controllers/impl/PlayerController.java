@@ -1,5 +1,6 @@
 package com.ironhack.padeline.controllers.impl;
 
+import com.ironhack.padeline.models.Match;
 import com.ironhack.padeline.models.Player;
 import com.ironhack.padeline.services.interfaces.PlayerServiceInterface;
 import jakarta.validation.Valid;
@@ -18,5 +19,11 @@ public class PlayerController {
     @ResponseStatus(HttpStatus.CREATED)
     public Player savePlayer(@RequestBody @Valid Player player) {
         return playerService.savePlayer(player);
+    }
+
+    @PostMapping("/matches")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Match saveMatch(@RequestBody @Valid Match match) {
+        return playerService.saveMatch(match);
     }
 }
