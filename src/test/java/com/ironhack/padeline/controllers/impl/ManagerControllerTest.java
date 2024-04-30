@@ -2,10 +2,9 @@ package com.ironhack.padeline.controllers.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ironhack.padeline.models.Address;
-import com.ironhack.padeline.models.Club;
-import com.ironhack.padeline.models.Manager;
-import com.ironhack.padeline.models.Player;
+import com.ironhack.padeline.enums.Place;
+import com.ironhack.padeline.enums.Type;
+import com.ironhack.padeline.models.*;
 import com.ironhack.padeline.repositories.ClubRepository;
 import com.ironhack.padeline.repositories.ManagerRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -60,6 +59,17 @@ class ManagerControllerTest {
         ).andExpect(status().isCreated()).andReturn();
 
         assertTrue(mvcResult.getResponse().getContentAsString().contains("Club1"));
+    }
 
+    @Test
+    void saveCourt() throws Exception {
+        Court court = new Court(1, "Principal", Place.INDOOR, Type.CEMENT);
+        String body = objectMapper.writeValueAsString(court);
+        MvcResult mvcResult = mockMvc.perform(post("/api/courts")
+                .content(body)
+                .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isCreated()).andReturn();
+
+        assertTrue(mvcResult.getResponse().getContentAsString().contains("Principal"));
     }
 }

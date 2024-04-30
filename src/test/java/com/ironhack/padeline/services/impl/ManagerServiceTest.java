@@ -1,9 +1,13 @@
 package com.ironhack.padeline.services.impl;
 
+import com.ironhack.padeline.enums.Place;
+import com.ironhack.padeline.enums.Type;
 import com.ironhack.padeline.models.Address;
 import com.ironhack.padeline.models.Club;
+import com.ironhack.padeline.models.Court;
 import com.ironhack.padeline.models.Manager;
 import com.ironhack.padeline.repositories.ClubRepository;
+import com.ironhack.padeline.repositories.CourtRepository;
 import com.ironhack.padeline.repositories.ManagerRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,6 +31,9 @@ class ManagerServiceTest {
     private ManagerRepository managerRepository;
 
     @Autowired
+    private CourtRepository courtRepository;
+
+    @Autowired
     private AdminService adminService;
 
     @Autowired
@@ -35,6 +42,7 @@ class ManagerServiceTest {
     private Manager manager;
     private Club club;
     private Address address;
+    private Court court;
 
     @BeforeEach
     public void setUp() {
@@ -42,6 +50,7 @@ class ManagerServiceTest {
         Manager newManager = adminService.saveManager(manager);
         address = new Address(1, "country", "city", "streeet", "number");
         club = new Club(1, "Club1", address, manager, new ArrayList<>());
+        court = new Court(1, "Principal", Place.INDOOR, Type.CEMENT);
     }
 
     @AfterEach
@@ -63,4 +72,10 @@ class ManagerServiceTest {
         assertEquals(newClub, managerFound.get().getManagerClub().get(0));
     }
 
+    @Test
+    void saveCourt_Database() {
+        Court newCourt = managerService.saveCourt(court);
+        Optional<Court> courtFound = courtRepository.findById(newCourt.getId());
+        assertEquals(newCourt.getName(), courtFound.get().getName());
+    }
 }

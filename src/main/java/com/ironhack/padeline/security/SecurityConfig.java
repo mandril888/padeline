@@ -84,6 +84,7 @@ public class SecurityConfig {
                 .requestMatchers(DELETE, "/api/users").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/managers").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/clubs").hasAnyAuthority("ROLE_MANAGER")
+                .requestMatchers(POST, "/api/courts").hasAnyAuthority("ROLE_MANAGER")
                 .requestMatchers(POST, "/api/player").hasAnyAuthority("ROLE_PLAYER")
                 .anyRequest().authenticated());
         // add the custom authentication filter to the http security object

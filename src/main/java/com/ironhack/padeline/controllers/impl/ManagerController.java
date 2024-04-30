@@ -1,6 +1,7 @@
 package com.ironhack.padeline.controllers.impl;
 
 import com.ironhack.padeline.models.Club;
+import com.ironhack.padeline.models.Court;
 import com.ironhack.padeline.models.Manager;
 import com.ironhack.padeline.services.interfaces.ManagerServiceInterface;
 import jakarta.validation.Valid;
@@ -19,5 +20,11 @@ public class ManagerController {
     @ResponseStatus(HttpStatus.CREATED)
     public Club saveClub(@RequestBody @Valid Club club, Manager manager) {
         return managerService.saveClub(club, manager);
+    }
+
+    @PostMapping("/courts")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Court saveCourt(@RequestBody @Valid Court court) {
+        return managerService.saveCourt(court);
     }
 }

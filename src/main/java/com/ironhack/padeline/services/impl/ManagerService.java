@@ -1,8 +1,10 @@
 package com.ironhack.padeline.services.impl;
 
 import com.ironhack.padeline.models.Club;
+import com.ironhack.padeline.models.Court;
 import com.ironhack.padeline.models.Manager;
 import com.ironhack.padeline.repositories.ClubRepository;
+import com.ironhack.padeline.repositories.CourtRepository;
 import com.ironhack.padeline.services.interfaces.ManagerServiceInterface;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,9 @@ public class ManagerService implements ManagerServiceInterface {
     @Autowired
     private ClubRepository clubRepository;
 
+    @Autowired
+    private CourtRepository courtRepository;
+
     @Override
     public Club saveClub(Club club, Manager manager) {
         Optional<Club> optionalClub = clubRepository.findById(club.getId());
@@ -33,5 +38,14 @@ public class ManagerService implements ManagerServiceInterface {
         manager.setManagerClub(clubsList);
         log.info("Saving new club {} to the database", club.getName());
         return clubRepository.save(club);
+    }
+
+    @Override
+    public Court saveCourt(Court court) {
+        Optional<Court> optionalCourt = courtRepository.findById(court.getId());
+        if (optionalCourt.isPresent()) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Court with id " + court.getId() + " already exist");
+
+        log.info("Saving new court {} to the database", court.getName());
+        return courtRepository.save(court);
     }
 }
