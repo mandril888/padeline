@@ -2,7 +2,6 @@ package com.ironhack.padeline.controllers.impl;
 
 import com.ironhack.padeline.models.Match;
 import com.ironhack.padeline.models.Player;
-import com.ironhack.padeline.models.User;
 import com.ironhack.padeline.services.interfaces.PlayerServiceInterface;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,6 @@ package com.ironhack.padeline.services.impl;
 
 import com.ironhack.padeline.models.Match;
 import com.ironhack.padeline.models.Player;
-import com.ironhack.padeline.models.User;
 import com.ironhack.padeline.repositories.MatchRepository;
 import com.ironhack.padeline.repositories.PlayerRepository;
 import com.ironhack.padeline.services.interfaces.PlayerServiceInterface;
