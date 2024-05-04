@@ -37,22 +37,19 @@ public class ManagerService implements ManagerServiceInterface {
         if (optionalClub.isPresent()) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Club with id " + club.getId() + " already exist");
 
         log.info("Saving new club {} to the database", club.getName());
-        clubRepository.save(club);
-
-        // EN LA BBDD SE GUARDA RARO !!!
+        Club clubSaved = clubRepository.save(club);
 
         Optional<Manager> optionalManager = managerRepository.findById(idManager);
         if (optionalManager.isPresent()) {
             log.info("Associating new club {} to the manager", club.getName());
             List<Club> clubsList = optionalManager.get().getManagerClub();
-            clubsList.add(club);
-            // optionalManager.get().setManagerClub(clubsList);
+            clubsList.add(clubSaved);
             managerRepository.save(optionalManager.get());
         } else {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Manager with id " + idManager + " doesn't exist");
         }
 
-        return club;
+        return clubSaved;
     }
 
     @Override
@@ -60,18 +57,20 @@ public class ManagerService implements ManagerServiceInterface {
         Optional<Court> optionalCourt = courtRepository.findById(court.getId());
         if (optionalCourt.isPresent()) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Court with id " + court.getId() + " already exist");
 
+        log.info("Saving new court {} to the database", court.getName());
+        Court courtSaved = courtRepository.save(court);
+
         Optional<Club> optionalClub = clubRepository.findById(idClub);
         if (optionalClub.isPresent()) {
-            log.info("Adding court {} to the club", court.getName());
+            log.info("Associating new court {} to the club", court.getName());
             List<Court> clubCourts = optionalClub.get().getClubCourt();
-            clubCourts.add(court);
-            optionalClub.get().setClubCourt(clubCourts);
+            clubCourts.add(courtSaved);
+            clubRepository.save(optionalClub.get());
         } else {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Club with id " + court.getId() + " doesn't exist");
         }
 
-        log.info("Saving new court {} to the database and adding to the club", court.getName());
-        return courtRepository.save(court);
+        return courtSaved;
     }
 
     @Override
