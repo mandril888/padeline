@@ -53,21 +53,21 @@ public class ManagerService implements ManagerServiceInterface {
     }
 
     @Override
-    public Court saveCourt(Court court, int idClub) {
+    public Court saveCourt(Court court) {
         Optional<Court> optionalCourt = courtRepository.findById(court.getId());
         if (optionalCourt.isPresent()) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Court with id " + court.getId() + " already exist");
 
         log.info("Saving new court {} to the database", court.getName());
         Court courtSaved = courtRepository.save(court);
 
-        Optional<Club> optionalClub = clubRepository.findById(idClub);
+        Optional<Club> optionalClub = clubRepository.findById(court.getCourtClub().getId());
         if (optionalClub.isPresent()) {
             log.info("Associating new court {} to the club", court.getName());
             List<Court> clubCourts = optionalClub.get().getClubCourt();
             clubCourts.add(courtSaved);
             clubRepository.save(optionalClub.get());
         } else {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Club with id " + court.getId() + " doesn't exist");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Club with id " + court.getCourtClub().getId() + " doesn't exist");
         }
 
         return courtSaved;

@@ -54,7 +54,7 @@ class ManagerServiceTest {
         adminService.saveManager(manager);
         Address address = new Address(1, "country", "city", "streeet", "number");
         club = new Club(1, "Club1", address, manager, new ArrayList<>());
-        court = new Court(1, "Principal", Place.INDOOR, Type.CEMENT);
+        court = new Court(1, "Principal", Place.INDOOR, Type.CEMENT, null);
     }
 
     @AfterEach
@@ -80,7 +80,7 @@ class ManagerServiceTest {
     @Test
     void saveCourt_Database() {
         Club newClub = managerService.saveClub(club);
-        Court newCourt = managerService.saveCourt(court, newClub.getId());
+        Court newCourt = managerService.saveCourt(court);
         Optional<Court> courtFound = courtRepository.findById(newCourt.getId());
         assertEquals(newCourt.getName(), courtFound.get().getName());
     }
@@ -88,7 +88,7 @@ class ManagerServiceTest {
     @Test
     void saveCourt_Club() {
         Club newClub = managerService.saveClub(club);
-        Court newCourt = managerService.saveCourt(court, newClub.getId());
+        Court newCourt = managerService.saveCourt(court);
         newClub = clubRepository.findById(newClub.getId()).get();
         assertEquals(newClub.getClubCourt().get(0).getName(), newCourt.getName());
     }

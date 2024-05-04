@@ -63,7 +63,9 @@ class ManagerControllerTest {
 
     @Test
     void saveCourt() throws Exception {
-        Court court = new Court(1, "Principal", Place.INDOOR, Type.CEMENT);
+        Address address = new Address(1, "country", "city", "streeet", "number");
+        Club club = new Club(1, "Club1", address, null, new ArrayList<>());
+        Court court = new Court(1, "Principal", Place.INDOOR, Type.CEMENT, club);
         String body = objectMapper.writeValueAsString(court);
         MvcResult mvcResult = mockMvc.perform(post("/api/courts")
                 .content(body)

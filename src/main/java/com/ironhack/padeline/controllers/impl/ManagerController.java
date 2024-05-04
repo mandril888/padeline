@@ -23,7 +23,7 @@ public class ManagerController {
 
     @PostMapping("/courts")
     @ResponseStatus(HttpStatus.CREATED)
-    public Court saveCourt(@RequestBody @Valid Court court, int idClub) {
-        return managerService.saveCourt(court, idClub);
+    public Court saveCourt(@RequestBody @Valid Court court) {
+        return managerService.saveCourt(court);
     }
 }
