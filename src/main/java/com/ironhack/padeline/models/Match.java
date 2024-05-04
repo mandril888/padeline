@@ -17,7 +17,6 @@ public class Match {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private int id;
     @NotNull
     private Date matchDate;

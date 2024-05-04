@@ -2,6 +2,7 @@ package com.ironhack.padeline.services.impl;
 
 import com.ironhack.padeline.models.Match;
 import com.ironhack.padeline.models.Player;
+import com.ironhack.padeline.models.User;
 import com.ironhack.padeline.repositories.MatchRepository;
 import com.ironhack.padeline.repositories.PlayerRepository;
 import com.ironhack.padeline.services.interfaces.PlayerServiceInterface;
@@ -45,6 +46,18 @@ public class PlayerService implements PlayerServiceInterface {
         userService.addRoleToUser(playerSaved.getUsername(), "ROLE_MANAGER");
 
         return playerSaved;
+    }
+
+    @Override
+    public Player updatePlayer(Long id, Player player) {
+        log.info("Updating player with id " + id);
+        Optional<Player> playerOld = playerRepository.findById(id);
+        if (playerOld.isPresent()) {
+            player.setId(id);
+            return playerRepository.save(player);
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Player with id " + id + " doesn't exist");
+        }
     }
 
     @Override

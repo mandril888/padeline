@@ -7,5 +7,7 @@ public interface PlayerServiceInterface {
 
     Player savePlayer(Player player);
 
+    Player updatePlayer(Long id, Player player);
+
     Match saveMatch(Match match);
 }
