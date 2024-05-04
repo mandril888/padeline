@@ -18,13 +18,13 @@ public class ManagerController {
 
     @PostMapping("/clubs")
     @ResponseStatus(HttpStatus.CREATED)
-    public Club saveClub(@RequestBody @Valid Club club, Manager manager) {
-        return managerService.saveClub(club, manager);
+    public Club saveClub(@RequestBody @Valid Club club, Long idManager) {
+        return managerService.saveClub(club, idManager);
     }
 
     @PostMapping("/courts")
     @ResponseStatus(HttpStatus.CREATED)
-    public Court saveCourt(@RequestBody @Valid Court court) {
-        return managerService.saveCourt(court);
+    public Court saveCourt(@RequestBody @Valid Court court, int idClub) {
+        return managerService.saveCourt(court, idClub);
     }
 }

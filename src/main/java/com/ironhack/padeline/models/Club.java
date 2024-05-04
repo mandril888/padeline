@@ -24,11 +24,11 @@ public class Club {
     @JoinColumn(name = "club_address")
     @NotNull
     private Address clubAddress;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "club_manager")
     @NotNull
     private Manager clubManager;
-    @OneToMany
+    @OneToMany (fetch = FetchType.EAGER)
     @JoinColumn(name = "club_court")
     private List<Court> clubCourt = new ArrayList<>();
 }

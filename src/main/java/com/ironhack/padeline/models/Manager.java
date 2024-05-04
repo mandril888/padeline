@@ -1,5 +1,6 @@
 package com.ironhack.padeline.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -23,8 +24,7 @@ public class Manager extends User {
     @Max(10)
     @Min(0)
     private int level;
-    @OneToMany
-    @JoinColumn(name = "manager_club")
+    @OneToMany (cascade = CascadeType.ALL)
     private List<Club> managerClub = new ArrayList<>();
 
     public Manager(Long id, String name, String username, String password, Collection<Role> roles, Date bdDate, int level, List<Club> managerClub) {

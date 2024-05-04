@@ -9,6 +9,7 @@ import com.ironhack.padeline.models.Manager;
 import com.ironhack.padeline.repositories.ClubRepository;
 import com.ironhack.padeline.repositories.CourtRepository;
 import com.ironhack.padeline.repositories.ManagerRepository;
+import com.ironhack.padeline.repositories.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,9 @@ class ManagerServiceTest {
     private CourtRepository courtRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private AdminService adminService;
 
     @Autowired
@@ -55,27 +59,38 @@ class ManagerServiceTest {
 
     @AfterEach
     void tearDown() {
+        userRepository.deleteAll();
         clubRepository.deleteAll();
     }
 
     @Test
     void saveClub_Database() {
-        Club newClub = managerService.saveClub(club, manager);
+        Club newClub = managerService.saveClub(club, manager.getId());
         Optional<Club> clubFound = clubRepository.findById(newClub.getId());
         assertEquals(newClub.getName(), clubFound.get().getName());
     }
 
     @Test
     void saveClub_Manager() {
-        Club newClub = managerService.saveClub(club, manager);
+        Club newClub = managerService.saveClub(club, manager.getId());
         Optional<Manager> managerFound = managerRepository.findById(manager.getId());
-        assertEquals(newClub, managerFound.get().getManagerClub().get(0));
+        assertEquals(newClub.getId(), managerFound.get().getManagerClub().get(0).getId());
     }
 
     @Test
     void saveCourt_Database() {
-        Court newCourt = managerService.saveCourt(court);
+        Club newClub = managerService.saveClub(club, manager.getId());
+        Court newCourt = managerService.saveCourt(court, newClub.getId());
         Optional<Court> courtFound = courtRepository.findById(newCourt.getId());
         assertEquals(newCourt.getName(), courtFound.get().getName());
     }
+
+    @Test
+    void saveCourt_Club() {
+        Club newClub = managerService.saveClub(club, manager.getId());
+        Court newCourt = managerService.saveCourt(court, newClub.getId());
+        assertEquals(newClub.getClubCourt().size(), 1);
+    }
+
+    // TODO: test updateManager()
 }

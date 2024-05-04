@@ -86,6 +86,7 @@ public class SecurityConfig {
                 .requestMatchers(POST, "/api/clubs").hasAnyAuthority("ROLE_MANAGER")
                 .requestMatchers(POST, "/api/courts").hasAnyAuthority("ROLE_MANAGER")
                 .requestMatchers(POST, "/api/player").hasAnyAuthority("ROLE_PLAYER")
+                .requestMatchers("/error/**").permitAll()
                 .anyRequest().authenticated());
         // add the custom authentication filter to the http security object
         http.addFilter(customAuthenticationFilter);

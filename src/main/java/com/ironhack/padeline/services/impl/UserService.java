@@ -145,7 +145,7 @@ public class UserService implements UserServiceInterface, UserDetailsService {
 
     @Override
     public User updateUser(Long id, User user) {
-        log.info("Updateing user with id " + id);
+        log.info("Updating user with id " + id);
         Optional<User> userOld = userRepository.findById(id);
         if (userOld.isPresent()) {
             user.setId(id);
