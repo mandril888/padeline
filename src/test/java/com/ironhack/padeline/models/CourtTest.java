@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CourtTest {
     @Test
     public void create_court() {
-        Court court = new Court(1, "Central", Place.INDOOR, Type.GLASS, null);
+        Court court = new Court(1, "Central", Place.INDOOR, Type.GLASS);
         assertEquals(Place.INDOOR, court.getPlace());
     }
 }

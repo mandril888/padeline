@@ -1,12 +1,10 @@
 package com.ironhack.padeline.controllers.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ironhack.padeline.enums.Place;
 import com.ironhack.padeline.enums.Type;
 import com.ironhack.padeline.models.*;
 import com.ironhack.padeline.repositories.ClubRepository;
-import com.ironhack.padeline.repositories.ManagerRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -63,9 +61,7 @@ class ManagerControllerTest {
 
     @Test
     void saveCourt() throws Exception {
-        Address address = new Address(1, "country", "city", "streeet", "number");
-        Club club = new Club(1, "Club1", address, null, new ArrayList<>());
-        Court court = new Court(1, "Principal", Place.INDOOR, Type.CEMENT, club);
+        Court court = new Court(1, "Principal", Place.INDOOR, Type.CEMENT);
         String body = objectMapper.writeValueAsString(court);
         MvcResult mvcResult = mockMvc.perform(post("/api/courts")
                 .content(body)

@@ -10,7 +10,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MatchTest {
-    private Court court = new Court(1, "Central", Place.INDOOR, Type.GLASS, null);
+    private Court court = new Court(1, "Central", Place.INDOOR, Type.GLASS);
 
     @Test
     void create_match() {

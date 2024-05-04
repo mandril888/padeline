@@ -8,7 +8,7 @@ public interface ManagerServiceInterface {
 
     Club saveClub(Club club);
 
-    Court saveCourt(Court court);
+    Court saveCourt(Court court, int idClub);
 
     Manager updateManager(Long id, Manager manager);
 }
