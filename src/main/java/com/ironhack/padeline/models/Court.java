@@ -6,9 +6,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 @Entity
 @Table(name = "court")
 @Data
@@ -18,7 +15,6 @@ public class Court {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private int id;
     @NotNull
     private String name;
