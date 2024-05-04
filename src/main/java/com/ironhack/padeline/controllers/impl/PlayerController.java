@@ -2,6 +2,7 @@ package com.ironhack.padeline.controllers.impl;
 
 import com.ironhack.padeline.models.Match;
 import com.ironhack.padeline.models.Player;
+import com.ironhack.padeline.models.User;
 import com.ironhack.padeline.services.interfaces.PlayerServiceInterface;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,12 @@ public class PlayerController {
     @ResponseStatus(HttpStatus.CREATED)
     public Player savePlayer(@RequestBody @Valid Player player) {
         return playerService.savePlayer(player);
+    }
+
+    @PatchMapping("/players/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public Player updatePlayer(@PathVariable(name="id") Long id, @RequestBody @Valid Player player) {
+        return playerService.updatePlayer(id, player);
     }
 
     @PostMapping("/matches")

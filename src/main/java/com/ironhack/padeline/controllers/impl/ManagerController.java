@@ -21,9 +21,9 @@ public class ManagerController {
         return managerService.saveClub(club);
     }
 
-    @PostMapping("/courts")
+    @PostMapping("/courts/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Court saveCourt(@RequestBody @Valid Court court) {
-        return managerService.saveCourt(court);
+    public Court saveCourt(@RequestBody @Valid Court court, @PathVariable(name="id") int idClub) {
+        return managerService.saveCourt(court, idClub);
     }
 }
