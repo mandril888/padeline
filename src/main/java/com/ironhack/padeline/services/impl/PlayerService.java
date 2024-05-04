@@ -29,6 +29,9 @@ public class PlayerService implements PlayerServiceInterface {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public Player savePlayer(Player player) {
         Optional<Player> optionalPlayer = playerRepository.findById(player.getId());
@@ -37,7 +40,11 @@ public class PlayerService implements PlayerServiceInterface {
         log.info("Saving new manager {} to the database", player.getName());
         // Encode the player's password for security before saving
         player.setPassword(passwordEncoder.encode(player.getPassword()));
-        return playerRepository.save(player);
+        Player playerSaved = playerRepository.save(player);
+
+        userService.addRoleToUser(playerSaved.getUsername(), "ROLE_MANAGER");
+
+        return playerSaved;
     }
 
     @Override

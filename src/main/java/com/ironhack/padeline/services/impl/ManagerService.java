@@ -32,21 +32,21 @@ public class ManagerService implements ManagerServiceInterface {
     private ManagerRepository managerRepository;
 
     @Override
-    public Club saveClub(Club club, Long idManager) {
+    public Club saveClub(Club club) {
         Optional<Club> optionalClub = clubRepository.findById(club.getId());
         if (optionalClub.isPresent()) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Club with id " + club.getId() + " already exist");
 
         log.info("Saving new club {} to the database", club.getName());
         Club clubSaved = clubRepository.save(club);
 
-        Optional<Manager> optionalManager = managerRepository.findById(idManager);
+        Optional<Manager> optionalManager = managerRepository.findById(club.getClubManager().getId());
         if (optionalManager.isPresent()) {
             log.info("Associating new club {} to the manager", club.getName());
             List<Club> clubsList = optionalManager.get().getManagerClub();
             clubsList.add(clubSaved);
             managerRepository.save(optionalManager.get());
         } else {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Manager with id " + idManager + " doesn't exist");
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Manager with id " + club.getClubManager().getId() + " doesn't exist");
         }
 
         return clubSaved;

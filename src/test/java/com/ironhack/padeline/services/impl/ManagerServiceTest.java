@@ -65,21 +65,21 @@ class ManagerServiceTest {
 
     @Test
     void saveClub_Database() {
-        Club newClub = managerService.saveClub(club, manager.getId());
+        Club newClub = managerService.saveClub(club);
         Optional<Club> clubFound = clubRepository.findById(newClub.getId());
         assertEquals(newClub.getName(), clubFound.get().getName());
     }
 
     @Test
     void saveClub_Manager() {
-        Club newClub = managerService.saveClub(club, manager.getId());
+        Club newClub = managerService.saveClub(club);
         Optional<Manager> managerFound = managerRepository.findById(manager.getId());
         assertEquals(newClub.getId(), managerFound.get().getManagerClub().get(0).getId());
     }
 
     @Test
     void saveCourt_Database() {
-        Club newClub = managerService.saveClub(club, manager.getId());
+        Club newClub = managerService.saveClub(club);
         Court newCourt = managerService.saveCourt(court, newClub.getId());
         Optional<Court> courtFound = courtRepository.findById(newCourt.getId());
         assertEquals(newCourt.getName(), courtFound.get().getName());
@@ -87,7 +87,7 @@ class ManagerServiceTest {
 
     @Test
     void saveCourt_Club() {
-        Club newClub = managerService.saveClub(club, manager.getId());
+        Club newClub = managerService.saveClub(club);
         Court newCourt = managerService.saveCourt(court, newClub.getId());
         newClub = clubRepository.findById(newClub.getId()).get();
         assertEquals(newClub.getClubCourt().get(0).getName(), newCourt.getName());

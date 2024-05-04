@@ -6,7 +6,7 @@ import com.ironhack.padeline.models.Manager;
 
 public interface ManagerServiceInterface {
 
-    Club saveClub(Club club, Long idManager);
+    Club saveClub(Club club);
 
     Court saveCourt(Court court, int idClub);
 

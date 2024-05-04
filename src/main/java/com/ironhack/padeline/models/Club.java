@@ -26,9 +26,7 @@ public class Club {
     private Address clubAddress;
     @ManyToOne
     @JoinColumn(name = "club_manager")
-    @NotNull
     private Manager clubManager;
-    // @OneToMany (fetch = FetchType.EAGER)
     @OneToMany (cascade = CascadeType.ALL)
     @JoinColumn(name = "club_court")
     private List<Court> clubCourt = new ArrayList<>();

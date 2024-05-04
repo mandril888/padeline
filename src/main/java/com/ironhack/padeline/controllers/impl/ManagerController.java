@@ -17,8 +17,8 @@ public class ManagerController {
 
     @PostMapping("/clubs")
     @ResponseStatus(HttpStatus.CREATED)
-    public Club saveClub(@RequestBody @Valid Club club, Long idManager) {
-        return managerService.saveClub(club, idManager);
+    public Club saveClub(@RequestBody @Valid Club club) {
+        return managerService.saveClub(club);
     }
 
     @PostMapping("/courts")

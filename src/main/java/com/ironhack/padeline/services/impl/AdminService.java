@@ -24,6 +24,9 @@ public class AdminService implements AdminServiceInterface {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public Manager saveManager(Manager manager) {
         Optional<Manager> optionalManager = managerRepository.findById(manager.getId());
@@ -32,6 +35,10 @@ public class AdminService implements AdminServiceInterface {
         log.info("Saving new manager {} to the database", manager.getName());
         // Encode the manager's password for security before saving
         manager.setPassword(passwordEncoder.encode(manager.getPassword()));
-        return managerRepository.save(manager);
+        Manager managerSaved = managerRepository.save(manager);
+
+        userService.addRoleToUser(managerSaved.getUsername(), "ROLE_MANAGER");
+
+        return managerSaved;
     }
 }
