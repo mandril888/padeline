@@ -89,6 +89,7 @@ class ManagerServiceTest {
     void saveCourt_Club() {
         Club newClub = managerService.saveClub(club, manager.getId());
         Court newCourt = managerService.saveCourt(court, newClub.getId());
+        newClub = clubRepository.findById(newClub.getId()).get();
         assertEquals(newClub.getClubCourt().get(0).getName(), newCourt.getName());
     }
 
