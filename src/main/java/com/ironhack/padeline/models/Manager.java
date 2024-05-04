@@ -1,5 +1,7 @@
 package com.ironhack.padeline.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -18,6 +20,10 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+
+@JsonIdentityInfo(
+    generator = ObjectIdGenerators.PropertyGenerator.class,
+    property = "id")
 public class Manager extends User {
     private Date bdDate;
     @Max(10)

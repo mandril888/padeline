@@ -6,10 +6,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 @Entity
 @Table(name = "court")
 @Data
@@ -29,6 +25,4 @@ public class Court {
     @Enumerated(EnumType.STRING)
     @NotNull
     private Type type;
-    @ManyToOne
-    private Club courtClub;
 }
