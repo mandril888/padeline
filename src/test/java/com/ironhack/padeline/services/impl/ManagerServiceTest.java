@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 
@@ -45,14 +46,13 @@ class ManagerServiceTest {
 
     private Manager manager;
     private Club club;
-    private Address address;
     private Court court;
 
     @BeforeEach
     public void setUp() {
-        manager = new Manager(1L, "Manager1", "manager1", "1234", new ArrayList<>(), new Date(2010, 7, 21), 8, new ArrayList<>());
-        Manager newManager = adminService.saveManager(manager);
-        address = new Address(1, "country", "city", "streeet", "number");
+        manager = new Manager(1L, "Manager1", "manager1", "1234", new ArrayList<>(), new Date(2010, Calendar.APRIL, 21), 8, new ArrayList<>());
+        adminService.saveManager(manager);
+        Address address = new Address(1, "country", "city", "streeet", "number");
         club = new Club(1, "Club1", address, manager, new ArrayList<>());
         court = new Court(1, "Principal", Place.INDOOR, Type.CEMENT);
     }

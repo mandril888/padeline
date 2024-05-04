@@ -2,7 +2,6 @@ package com.ironhack.padeline.controllers.impl;
 
 import com.ironhack.padeline.models.Club;
 import com.ironhack.padeline.models.Court;
-import com.ironhack.padeline.models.Manager;
 import com.ironhack.padeline.services.interfaces.ManagerServiceInterface;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

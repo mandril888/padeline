@@ -3,7 +3,6 @@ package com.ironhack.padeline.services.impl;
 import com.ironhack.padeline.models.Club;
 import com.ironhack.padeline.models.Court;
 import com.ironhack.padeline.models.Manager;
-import com.ironhack.padeline.models.User;
 import com.ironhack.padeline.repositories.ClubRepository;
 import com.ironhack.padeline.repositories.CourtRepository;
 import com.ironhack.padeline.repositories.ManagerRepository;
