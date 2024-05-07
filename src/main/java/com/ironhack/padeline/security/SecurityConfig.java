@@ -77,15 +77,17 @@ public class SecurityConfig {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         // set up authorization for different request matchers and user roles
         http.authorizeHttpRequests((requests) -> requests
+                .requestMatchers("/api-docs").permitAll()
+                .requestMatchers("/swagger-ui/index.html").permitAll()
                 .requestMatchers("/api/login/**").permitAll()
-                .requestMatchers(GET, "/api/users").permitAll()
-                .requestMatchers(POST, "/api/users").permitAll()
-                .requestMatchers(PATCH, "/api/users").permitAll()
+                .requestMatchers(GET, "/api/**").hasAnyAuthority("ROLE_ADMIN")
+                .requestMatchers(POST, "/api/users").hasAnyAuthority("ROLE_ADMIN")
+                .requestMatchers(PATCH, "/api/users").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(DELETE, "/api/users").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/managers").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/clubs").hasAnyAuthority("ROLE_MANAGER")
                 .requestMatchers(POST, "/api/courts").hasAnyAuthority("ROLE_MANAGER")
-                .requestMatchers(POST, "/api/player").hasAnyAuthority("ROLE_PLAYER")
+                .requestMatchers(PATCH, "/api/player").hasAnyAuthority("ROLE_PLAYER")
                 .requestMatchers("/error/**").permitAll()
                 .anyRequest().authenticated());
         // add the custom authentication filter to the http security object

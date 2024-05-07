@@ -149,6 +149,8 @@ public class UserService implements UserServiceInterface, UserDetailsService {
         Optional<User> userOld = userRepository.findById(id);
         if (userOld.isPresent()) {
             user.setId(id);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(userOld.get().getRoles());
             return userRepository.save(user);
         } else {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "User with id " + id + " doesn't exist");
