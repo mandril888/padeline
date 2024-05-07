@@ -14,8 +14,8 @@ Backend de una aplicación de gestión de clubs y pistas de pádel, con usuarios
 
 ## Controllers and Routes structure
 [Link to documentation](http://localhost:8080/api-docs)
-![image](https://github.com/mandril888/padeline/assets/19669466/30aa032f-ae7d-4a4a-b2dd-34b255a13f4a)
 
+![image](https://github.com/mandril888/padeline/assets/19669466/5d7764a4-616b-4308-976f-436dda8dd4fd)
 
 ## Test cases
 * Admin
