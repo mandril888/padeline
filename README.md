@@ -1,5 +1,5 @@
 # Padeline
-Backend de una aplicación de gesitón de clubs y pistas de pádel, con usuarios y partidos.
+Backend de una aplicación de gestión de clubs y pistas de pádel, con usuarios y partidos.
 
 ## Class Diagram
 ![image](https://github.com/mandril888/padeline/assets/19669466/58682467-6ae9-49a6-ba50-d0eb4b574a4e)
