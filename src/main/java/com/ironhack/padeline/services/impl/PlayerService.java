@@ -53,6 +53,8 @@ public class PlayerService implements PlayerServiceInterface {
         Optional<Player> playerOld = playerRepository.findById(id);
         if (playerOld.isPresent()) {
             player.setId(id);
+            player.setPassword(passwordEncoder.encode(player.getPassword()));
+            player.setRoles(playerOld.get().getRoles());
             return playerRepository.save(player);
         } else {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Player with id " + id + " doesn't exist");
