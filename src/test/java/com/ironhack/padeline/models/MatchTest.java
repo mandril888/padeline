@@ -15,6 +15,6 @@ class MatchTest {
     @Test
     void create_match() {
         Match match = new Match(1, new Date(2024, 2, 11), court, new ArrayList<>());
-        assertEquals(court.getName(), match.getMatchCourt().getName());
+        assertEquals(court.getName(), match.getMatchGameCourt().getName());
     }
 }

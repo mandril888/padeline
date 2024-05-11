@@ -5,6 +5,7 @@ import com.ironhack.padeline.enums.Place;
 import com.ironhack.padeline.enums.Type;
 import com.ironhack.padeline.models.*;
 import com.ironhack.padeline.repositories.ClubRepository;
+import com.ironhack.padeline.repositories.ManagerRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,21 +36,28 @@ class ManagerControllerTest {
     private MockMvc mockMvc;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    Manager manager;
+    Address address = new Address(1, "country", "city", "streeet", "number");
+    Club club = new Club(1, "Club1", address, manager, new ArrayList<>());
+
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+        manager = new Manager(1L, "Manager1", "manager1", "1234", new ArrayList<>(), new Date(2010, 7, 21), 8, new ArrayList<>());
+
+        String body = objectMapper.writeValueAsString(manager);
+        mockMvc.perform(post("/api/managers")
+                .content(body)
+                .contentType(MediaType.APPLICATION_JSON));
     }
 
     @AfterEach
     void tearDown() {
-        clubRepository.deleteAll();
+        // clubRepository.deleteAll();
     }
 
     @Test
     void saveClub() throws Exception {
-        Manager manager = new Manager(1L, "Manager1", "manager1", "1234", new ArrayList<>(), new Date(2010, 7, 21), 8, new ArrayList<>());
-        Address address = new Address(1, "country", "city", "streeet", "number");
-        Club club = new Club(1, "Club1", address, manager, new ArrayList<>());
         String body = objectMapper.writeValueAsString(club);
         MvcResult mvcResult = mockMvc.perform(post("/api/clubs")
                 .content(body)
@@ -61,9 +69,10 @@ class ManagerControllerTest {
 
     @Test
     void saveCourt() throws Exception {
+        clubRepository.save(club);
         Court court = new Court(1, "Principal", Place.INDOOR, Type.CEMENT);
         String body = objectMapper.writeValueAsString(court);
-        MvcResult mvcResult = mockMvc.perform(post("/api/courts")
+        MvcResult mvcResult = mockMvc.perform(post("/api/courts/1")
                 .content(body)
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isCreated()).andReturn();
