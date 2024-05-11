@@ -1,8 +1,12 @@
 # Padeline
 Backend de una aplicación de gestión de clubs y pistas de pádel, con usuarios y partidos.
 
+## Presentation
+[Slides Padeline](https://slides.com/mandril888/padeline)
+
 ## Class Diagram
-![image](https://github.com/mandril888/padeline/assets/19669466/58682467-6ae9-49a6-ba50-d0eb4b574a4e)
+![image](https://github.com/mandril888/padeline/assets/19669466/deec06fb-2a67-4013-bae4-9465a56ccea4)
+
 
 ## Technologies Used
 - Java
