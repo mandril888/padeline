@@ -80,6 +80,7 @@ public class SecurityConfig {
                 .requestMatchers("/api-docs").permitAll()
                 .requestMatchers("/swagger-ui/index.html").permitAll()
                 .requestMatchers("/api/login/**").permitAll()
+                .requestMatchers(GET, "/api/players").hasAnyAuthority("ROLE_PLAYER", "ROLE_MANAGER")
                 .requestMatchers(GET, "/api/**").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/users").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(PATCH, "/api/users").hasAnyAuthority("ROLE_ADMIN")
@@ -87,7 +88,6 @@ public class SecurityConfig {
                 .requestMatchers(POST, "/api/managers").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/clubs").hasAnyAuthority("ROLE_MANAGER")
                 .requestMatchers(POST, "/api/courts").hasAnyAuthority("ROLE_MANAGER")
-                .requestMatchers(GET, "/api/players").hasAnyAuthority("ROLE_PLAYER", "ROLE_MANAGER")
                 .requestMatchers(PATCH, "/api/players").hasAnyAuthority("ROLE_PLAYER")
                 .requestMatchers("/error/**").permitAll()
                 .anyRequest().authenticated());
