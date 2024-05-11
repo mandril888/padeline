@@ -23,8 +23,8 @@ public class Match {
     @OneToOne
     @JoinColumn(name = "match_game_court")
     @NotNull
-    private Court matchCourt;
-    @OneToMany
-    @JoinColumn(name = "match_game_player")
-    private List<Player> matchPlayer = new ArrayList<>();
+    private Court matchGameCourt;
+    @ManyToMany (cascade = CascadeType.MERGE)
+    @JoinColumn(name = "match_game_user")
+    private List<Player> matchGameUser = new ArrayList<>();
 }

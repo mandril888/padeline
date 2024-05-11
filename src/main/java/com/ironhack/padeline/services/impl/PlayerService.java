@@ -1,7 +1,7 @@
 package com.ironhack.padeline.services.impl;
 
-import com.ironhack.padeline.models.Match;
-import com.ironhack.padeline.models.Player;
+import com.ironhack.padeline.models.*;
+import com.ironhack.padeline.repositories.CourtRepository;
 import com.ironhack.padeline.repositories.MatchRepository;
 import com.ironhack.padeline.repositories.PlayerRepository;
 import com.ironhack.padeline.services.interfaces.PlayerServiceInterface;
@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +25,9 @@ public class PlayerService implements PlayerServiceInterface {
 
     @Autowired
     private MatchRepository matchRepository;
+
+    @Autowired
+    private CourtRepository courtRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -66,6 +69,28 @@ public class PlayerService implements PlayerServiceInterface {
         Optional<Match> optionalMatch = matchRepository.findById(match.getId());
         if (optionalMatch.isPresent()) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Match with id " + match.getId() + " already exist");
 
+        Optional<Court> optionalCourt = courtRepository.findById(match.getMatchGameCourt().getId());
+        if (optionalCourt.isEmpty()) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Court with id " + match.getId() + " doesn't exist");
+
+        if(match.getMatchGameUser().size() > 4) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Match can't allow more than 4 players");
+
         return matchRepository.save(match);
+    }
+
+    @Override
+    public List<User> getPlayers() {
+        List<User> allUsers = userService.getUsers();
+        List<User> players = new ArrayList<>();
+        for (User user : allUsers) {
+            Collection<Role> playerRoles = user.getRoles();
+
+            for (Role playerRole : playerRoles) {
+                if (!Objects.equals(playerRole.getName(), "ROLE_ADMIN")) {
+                    players.add(user);
+                }
+            }
+        }
+
+        return players;
     }
 }

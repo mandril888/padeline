@@ -31,11 +31,11 @@ public class PadelineJwtApplication {
 //            userService.saveRole(new Role(null, "ROLE_MANAGER"));
 //            userService.saveRole(new Role(null, "ROLE_ADMIN"));
 //
-//            userService.saveUser(new Player(1L, "Player1", "player1", "1234", new ArrayList<>(), new Date(2014, 2, 11), 5));
-//            userService.saveUser(new Player(2L, "Player2", "player2", "1234", new ArrayList<>(), new Date(2010, 7, 21), 8));
-//            userService.saveUser(new Manager(3L, "Manager1", "manager1", "1234", new ArrayList<>(), new Date(2010, 7, 21), 7, new ArrayList<>()));
-//            userService.saveUser(new Manager(4L, "Manager2", "manager2", "1234", new ArrayList<>(), new Date(2010, 7, 21), 9, new ArrayList<>()));
 //            userService.saveUser(new Admin(5L, "Admin", "admin", "1234", new ArrayList<>()));
+//            userService.saveUser(new Manager(3L, "Manager1", "manager1", "1234", new ArrayList<>(), "2001-01-01", 5, new ArrayList<>()));
+//            userService.saveUser(new Manager(4L, "Manager2", "manager2", "1234", new ArrayList<>(), "2002-02-02", 6, new ArrayList<>()));
+//            userService.saveUser(new Player(1L, "Player1", "player1", "1234", new ArrayList<>(), "2003-03-03", 7));
+//            userService.saveUser(new Player(2L, "Player2", "player2", "1234", new ArrayList<>(), "2004-04-04", 8));
 //
 //            userService.addRoleToUser("player1", "ROLE_PLAYER");
 //            userService.addRoleToUser("player2", "ROLE_PLAYER");
