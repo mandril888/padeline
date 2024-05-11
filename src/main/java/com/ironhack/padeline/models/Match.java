@@ -20,11 +20,11 @@ public class Match {
     private int id;
     @NotNull
     private Date matchDate;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "match_game_court")
     @NotNull
     private Court matchGameCourt;
     @ManyToMany (cascade = CascadeType.MERGE)
-    @JoinColumn(name = "match_game_user")
+    @JoinTable(name = "match_game_user", joinColumns = @JoinColumn(name = "match_id"), inverseJoinColumns = @JoinColumn(name = "player_id"))
     private List<Player> matchGameUser = new ArrayList<>();
 }

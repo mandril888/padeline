@@ -74,7 +74,9 @@ public class PlayerService implements PlayerServiceInterface {
 
         if(match.getMatchGameUser().size() > 4) throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Match can't allow more than 4 players");
 
-        return matchRepository.save(match);
+        match = matchRepository.save(match);
+
+        return match;
     }
 
     @Override
